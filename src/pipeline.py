@@ -39,3 +39,29 @@ class Pipeline:
         for ch in chunks:
             partials.append(backend.summarize(ch, params.length, params.tone, lang))
 
+        joined = "\n\n".join(partials)
+        final = backend.summarize(
+            (
+                "You will receive multiple partial summaries. Merge them into a single, coherent summary "
+                "without duplicating points. Maintain factual accuracy.\n\nPartial summaries:\n" + joined
+            ),
+            params.length,
+            params.tone,
+            lang,
+        )
+
+        result = {
+            "summary": final,
+            "partials": partials,
+            "language": lang,
+            "backend": params.backend,
+            "length": params.length,
+            "tone": params.tone,
+            "from_cache": False,
+            "stats": {
+                "num_chunks": len(chunks),
+                "input_words": len(text.split()),
+            },
+        }
+        cache_write(key, result)
+        return result
