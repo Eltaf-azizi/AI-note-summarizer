@@ -18,3 +18,24 @@ class Pipeline:
         if name not in self._backends:
             self._backends[name] = get_backend(name)
         return self._backends[name]
+
+    def summarize(self, text: str, params: SummaryParams):
+        text = text.strip()
+        if not text:
+            raise ValueError("No text provided")
+
+        key = sha256(text + f"|{params.length}|{params.tone}|{params.backend}")
+        ensure_cache_dir()
+        cached = cache_read(key)
+        if cached:
+            cached["from_cache"] = True
+            return cached
+
+        lang = detect_lang(text)
+        backend = self._backend(params.backend)
+
+        chunks = chunk_by_words(text, target_words=280)
+        partials: List[str] = []
+        for ch in chunks:
+            partials.append(backend.summarize(ch, params.length, params.tone, lang))
+
