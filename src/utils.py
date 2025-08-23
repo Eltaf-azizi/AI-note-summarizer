@@ -65,3 +65,30 @@ def load_any(file: FileStorage) -> str:
 
     raise ValueError("Unsupported file type. Use .txt, .md, .pdf, or .docx")
 
+
+def detect_lang(text: str) -> Optional[str]:
+    try:
+        return detect(text)
+    except Exception:
+        return None
+
+
+def chunk_by_words(text: str, target_words: int = 280):
+    paras = [p.strip() for p in text.split("\n")]
+    chunks, cur, wcount = [], [], 0
+    for p in paras:
+        if not p:
+            continue
+        pw = len(p.split())
+        if wcount + pw > target_words and cur:
+            chunks.append("\n".join(cur))
+            cur, wcount = [p], pw
+        else:
+            cur.append(p)
+            wcount += pw
+    if cur:
+        chunks.append("\n".join(cur))
+    return chunks if chunks else [text]
+
+def safe_truncate(s: str, max_chars: int = 1200) -> str:
+    return (s[:max_chars] + "…") if (s and len(s) > max_chars) else s
