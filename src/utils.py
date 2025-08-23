@@ -37,3 +37,31 @@ def cache_write(key: str, obj: dict):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(obj, f, ensure_ascii=False, indent=2)
 
+
+
+def load_any(file: FileStorage) -> str:
+    """Load text from txt, md, pdf, docx uploads."""
+    filename = (file.filename or "").lower()
+    data = file.read()
+
+    if filename.endswith((".txt", ".md", ".markdown")):
+        return data.decode("utf-8", errors="ignore")
+
+    if filename.endswith(".pdf"):
+        stream = BytesIO(data)
+        reader = PdfReader(stream)
+        pages = []
+        for p in reader.pages:
+            try:
+                pages.append(p.extract_text() or "")
+            except Exception:
+                pages.append("")
+        return "\n\n".join(pages)
+
+    if filename.endswith(".docx"):
+        stream = BytesIO(data)
+        doc = Document(stream)
+        return "\n".join(p.text for p in doc.paragraphs)
+
+    raise ValueError("Unsupported file type. Use .txt, .md, .pdf, or .docx")
+
