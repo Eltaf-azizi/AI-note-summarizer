@@ -41,6 +41,24 @@ class OpenAIBackend:
             "You are a careful, precise summarizer. Keep facts accurate, avoid hallucinations, "
             "and preserve crucial terms and numbers."
         )
+        usr = (
+            f"Summarize the following text in {target}. Style: {style}. "
+            + (f"Language: {language_hint}. " if language_hint else "")
+            + "Text:\n\n" + text
+        )
+        resp = self.client.chat.completions.create(
+            model=self.model,
+            messages=[{"role": "system", "content": sys}, {"role": "user", "content": usr}],
+            temperature=0.2,
+            max_tokens=700,
+        )
+        return resp.choices[0].message.content.strip()
+
+class LocalHFBackend:
+    def __init__(self, model: Optional[str] = None):
+        if hf_pipeline is None:
+            raise RuntimeError("transformers not installed; set SUM_BACKEND=openai or install transformers")
+        self.pipe = hf_pipeline("summarization", model=(model or settings.hf_model))
 
 
 def get_backend(name: str):
