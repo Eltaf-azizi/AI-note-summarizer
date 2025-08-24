@@ -60,6 +60,31 @@ class LocalHFBackend:
             raise RuntimeError("transformers not installed; set SUM_BACKEND=openai or install transformers")
         self.pipe = hf_pipeline("summarization", model=(model or settings.hf_model))
 
+    def summarize(self, text: str, length: str, tone: str, language_hint: Optional[str]):
+        # Token/length guidance
+        target = {
+            "short": (50, 150),
+            "medium": (120, 240),
+            "long": (200, 360),
+        }.get(length, (60, 160))
+        out = self.pipe(text, min_length=target[0], max_length=target[1], do_sample=False)
+        summary = out[0]["summary_text"].strip()
+        if tone == "bullets":
+            import re
+            sents = re.split(r"(?<=[.!?])\s+", summary)
+            sents = [s.strip() for s in sents if s.strip()]
+            summary = "\n".join(f"• {s}" for s in sents)
+        return summary
+
+
+class MockBackend:
+    """Deterministic backend for tests (no network)."""
+    def summarize(self, text: str, length: str, tone: str, language_hint: Optional[str]):
+        base = text.strip().split("\n")[0][:120]
+        if tone == "bullets":
+            return f"• {base}"
+        return f"SUMMARY: {base}"
+    
 
 def get_backend(name: str):
     if name == "openai":
