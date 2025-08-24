@@ -36,4 +36,24 @@ def index():
         except Exception as e:
             error = str(e)
 
+    return render_template(
+        "index.html",
+        result=result,
+        error=error,
+        input_preview=safe_truncate(input_text, 2000),
+    )
+
+
+@app.route("/download", methods=["POST"]) 
+def download():
+    content = request.form.get("content", "")
+    filename = request.form.get("filename", "summary.txt")
+    if not content:
+        return redirect(url_for("index"))
+    mem = io.BytesIO(content.encode("utf-8"))
+    mem.seek(0)
+    return send_file(mem, as_attachment=True, download_name=filename, mimetype="text/plain")
+
+if __name__ == "__main__":
+    app.run(debug=False)
 
