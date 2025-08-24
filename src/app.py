@@ -14,3 +14,26 @@ def index():
     result = None
     error = None
     input_text = ""
+
+    if request.method == "POST":
+        length = request.form.get("length", "short")
+        tone = request.form.get("tone", "neutral")
+        backend = request.form.get("backend") or settings.backend
+        source = request.form.get("text_source", "paste")
+        try:
+            if source == "paste":
+                input_text = request.form.get("note", "").strip()
+            else:
+                uploaded = request.files.get("file")
+                if not uploaded or uploaded.filename == "":
+                    raise ValueError("No file selected")
+                input_text = load_any(uploaded)
+            if not input_text:
+                raise ValueError("No text provided")
+
+            params = SummaryParams(length=length, tone=tone, backend=backend)
+            result = pipeline.summarize(input_text, params)
+        except Exception as e:
+            error = str(e)
+
+
