@@ -73,3 +73,27 @@ h1
     gap:.25rem
 }
 
+.lbl
+{
+    font-size:.9rem;
+    color:var(--muted)
+}
+
+select,input[type=file]
+{
+    width:100%;
+    padding:.6rem;
+    border:1px solid var(--border);
+    border-radius:10px
+}
+
+textarea
+{
+    width:100%;
+    padding:.8rem;
+    border:1px solid var(--border);
+    border-radius:12px;
+    min-height:180px;
+    margin:.5rem 0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace
+}
+
