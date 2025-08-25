@@ -43,3 +43,33 @@ h1
     font-size:1.6rem
 }
 
+.muted
+{
+    color:var(--muted)
+}
+
+.error
+{
+    background:#fff1f2;
+    border:1px solid #fecdd3;
+    color:#be123c;
+    padding:.75rem;
+    border-radius:12px;
+    margin:.75rem 0
+}
+
+.grid
+{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:.75rem;
+    margin:.75rem 0
+}
+
+.block
+{
+    display:flex;
+    flex-direction:column;
+    gap:.25rem
+}
+
