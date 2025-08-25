@@ -20,3 +20,26 @@ body
     background:var(--bg);
     color:var(--fg)
 }
+
+.wrap
+{
+    max-width:900px;
+    margin:3rem auto;
+    padding:0 1rem
+}
+
+.card
+{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:1.25rem;
+    box-shadow:0 10px 24px rgba(2,6,23,.06)
+}
+
+h1
+{
+    margin:0 0 .5rem;
+    font-size:1.6rem
+}
+
