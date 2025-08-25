@@ -124,3 +124,28 @@ button:hover
     filter:brightness(.96)
 }
 
+.result
+{
+    margin-top:1rem;
+    padding:1rem;
+    border-radius:14px;
+    background:#f1f5f9;
+    border:1px solid var(--border)
+}
+
+.flex
+{
+    display:flex
+    ;flex-wrap:wrap;
+    gap:.5rem;
+    align-items:center
+}
+
+.pill
+{
+    display:inline-block;
+    padding:.2rem .6rem;
+    border-radius:999px;
+    background:#e2e8f0;
+    font-size:.8rem
+}
