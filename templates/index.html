@@ -17,6 +17,24 @@
 
       {% if result %}
       <div class="result">
+        
+        <div class="flex">
+          <h3>Summary</h3>
+          <span class="pill">Backend: {{ result.backend }}</span>
+          <span class="pill">Length: {{ result.length }}</span>
+          <span class="pill">Tone: {{ result.tone }}</span>
+          <span class="pill">Chunks: {{ result.stats.num_chunks }}</span>
+          <span class="pill">Words: {{ result.stats.input_words }}</span>
+          {% if result.from_cache %}<span class="pill good">Cached</span>{% endif %}
+        </div>
+        <pre id="summaryBox">{{ result.summary }}</pre>
+        <form method="POST" action="/download">
+          <input type="hidden" name="content" value="{{ result.summary }}" />
+          <input type="hidden" name="filename" value="summary.txt" />
+          <button type="submit" class="ghost">Download .txt</button>
+          <button type="button" class="ghost" id="copyBtn">Copy</button>
+        </form>
+
         {% if result.partials and result.partials|length > 1 %}
         <details>
           <summary>Show partial summaries (map step)</summary>
