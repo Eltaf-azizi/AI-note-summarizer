@@ -18,6 +18,30 @@
       <form method="POST" enctype="multipart/form-data">
         <div class="grid">
           <label class="block">
+            <span class="lbl">Input Mode</span>
+            <select name="text_source">
+              <option value="paste">Paste Text</option>
+              <option value="upload">Upload File (.txt, .md, .pdf, .docx)</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="lbl">Backend</span>
+            <select name="backend">
+              <option value="">(Use .env)</option>
+              <option value="openai">OpenAI (GPT)</option>
+              <option value="local">Local (Transformers)</option>
+            </select>
+          </label>
+          <label class="block">
+            <span class="lbl">Length</span>
+            <select name="length">
+              <option value="short">Short</option>
+              <option value="medium">Medium</option>
+              <option value="long">Long</option>
+            </select>
+          </label>
+
+          <label class="block">
             <span class="lbl">Tone</span>
             <select name="tone">
               <option value="neutral">Neutral</option>
