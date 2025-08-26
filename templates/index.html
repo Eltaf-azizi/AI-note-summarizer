@@ -15,6 +15,27 @@
 
       {% if error %}<div class="error">{{ error }}</div>{% endif %}
 
+      <form method="POST" enctype="multipart/form-data">
+        <div class="grid">
+          <label class="block">
+            <span class="lbl">Tone</span>
+            <select name="tone">
+              <option value="neutral">Neutral</option>
+              <option value="concise">Concise</option>
+              <option value="bullets">Bullet Points</option>
+            </select>
+          </label>
+        </div>
+
+
+        <textarea name="note" rows="12" placeholder="Paste your text here...">{{ input_preview or '' }}</textarea>
+        <input type="file" name="file" />
+        <div class="actions">
+          <button>Summarize</button>
+        </div>
+      </form>
+
+
       {% if result %}
       <div class="result">
         
