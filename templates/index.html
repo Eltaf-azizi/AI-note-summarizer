@@ -7,6 +7,32 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
+
+  <div class="wrap">
+    <div class="card">
+      <h1>📝 AIBrief – AI Note Summarizer</h1>
+      <p class="muted">Paste text or upload a file. Choose backend and style. We do not store your text.</p>
+
+      {% if error %}<div class="error">{{ error }}</div>{% endif %}
+
+      {% if result %}
+      <div class="result">
+        {% if result.partials and result.partials|length > 1 %}
+        <details>
+          <summary>Show partial summaries (map step)</summary>
+          <ol>
+            {% for p in result.partials %}
+              <li><pre>{{ p }}</pre></li>
+            {% endfor %}
+          </ol>
+        </details>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      <p class="note">Tip: Local backend downloads a model on first run; use OpenAI for best quality.</p>
+    </div>
+  </div>
 <script>
   const btn = document.getElementById('copyBtn');
   if (btn) {
