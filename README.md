@@ -10,3 +10,11 @@ An intelligent note summarization app that uses Natural Language Processing (NLP
  - 🎯 Adjustable summary length (short, medium, detailed).
  - 🔎 Clean and simple user interface.
  - ⚡ Fast inference powered by Hugging Face Transformers.
+
+## 📦 Tech Stack
+
+ - Python 3.9+
+ - Flask (backend)
+ - HTML/CSS/JavaScript (frontend)
+ - Transformers (Hugging Face) for NLP models
+ - Gunicorn / Docker (optional) for deployment
