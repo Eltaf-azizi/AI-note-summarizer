@@ -97,3 +97,10 @@ git push heroku main
 ```
 
 Gunicorn & Procfile handle production-ready deployment.
+
+## 🧪 Running Tests
+
+Run all tests with pytest:
+```
+pytest tests/
+```
