@@ -48,3 +48,20 @@ An intelligent note summarization app that uses Natural Language Processing (NLP
        └─ workflows/
       └─ ci.yml             # GitHub Actions CI workflow
 
+## ⚙️ Installation
+
+### 1. Clone the repository
+```
+git clone https://github.com/yourusername/aibrief.git
+cd aibrief
+```
+
+### 2. Create a virtual environment & install dependencies
+
+```
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+
