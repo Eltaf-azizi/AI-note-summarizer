@@ -64,4 +64,18 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+### 3. Set up environment variables
+
+Copy .env.example to .env and update values (e.g., API keys if required):
+```
+cp .env.example .env
+```
+
+### 4. Run the application
+```
+python src/app.py
+```
+
+Access the app at: http://127.0.0.1:5000
+
 
