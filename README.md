@@ -5,16 +5,10 @@ An intelligent note summarization app that uses Natural Language Processing (NLP
 
 ## 🚀 Features
 
- - ✨ Summarize long text into short, meaningful summaries.
- - 📂 Upload or paste notes for instant processing.
- - 🎯 Adjustable summary length (short, medium, detailed).
- - 🔎 Clean and simple user interface.
- - ⚡ Fast inference powered by Hugging Face Transformers.
-
-## 📦 Tech Stack
-
- - Python 3.9+
- - Flask (backend)
- - HTML/CSS/JavaScript (frontend)
- - Transformers (Hugging Face) for NLP models
- - Gunicorn / Docker (optional) for deployment
+ - 📄 **Text Summarization** – Condense large amounts of text into short summaries.
+ - 🧩 **Chunking Pipeline** – Handles long text by splitting it into smaller sections before summarization.
+ - ⚡**Fast API with Flask** – Lightweight web application with a clean UI.
+ - 🎨 **Responsive Design** – Simple, minimal frontend with HTML & CSS.
+ - 🧪 **Testing Suite** – Includes unit tests for core modules and pipelines.
+ - 🐳 **Docker Support** – Containerized for easy deployment.
+ - ☁️ **Cloud Ready** – Procfile and Gunicorn configuration for deployment on platforms like Heroku.
