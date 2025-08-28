@@ -79,3 +79,9 @@ python src/app.py
 Access the app at: http://127.0.0.1:5000
 
 
+## 🐳 Run with Docker
+
+```
+docker build -t aibrief .
+docker run -p 5000:5000 aibrief
+```
