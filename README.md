@@ -85,3 +85,15 @@ Access the app at: http://127.0.0.1:5000
 docker build -t aibrief .
 docker run -p 5000:5000 aibrief
 ```
+
+## ☁️ Deployment (Heroku / Cloud)
+
+1. Push to GitHub.
+2. Connect repository to Heroku.
+3. Deploy with:
+
+```
+git push heroku main
+```
+
+Gunicorn & Procfile handle production-ready deployment.
