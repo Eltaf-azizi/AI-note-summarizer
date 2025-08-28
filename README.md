@@ -12,3 +12,39 @@ An intelligent note summarization app that uses Natural Language Processing (NLP
  - 🧪 **Testing Suite** – Includes unit tests for core modules and pipelines.
  - 🐳 **Docker Support** – Containerized for easy deployment.
  - ☁️ **Cloud Ready** – Procfile and Gunicorn configuration for deployment on platforms like Heroku.
+
+## Project Structure
+
+    AI-Note-Summarizer/
+    ├─ README.md                # Documentation
+    ├─ requirements.txt         # Python dependencies
+    ├─ .gitignore               # Ignored files
+    ├─ LICENSE                  # License file
+    ├─ .env.example             # Example environment variables
+    ├─ Dockerfile               # Docker container setup
+    ├─ gunicorn.conf.py         # Gunicorn configuration
+    ├─ Procfile                 # Deployment file (Heroku)
+    │
+    ├─ src/                     # Application source code
+    │  ├─ app.py                # Flask app entry point
+    │  ├─ config.py             # Configuration management
+    │  ├─ summarizer.py         # Summarization logic
+    │  ├─ pipeline.py           # Text preprocessing & chunking pipeline
+    │  ├─ utils.py              # Utility functions
+    │  └─ __init__.py
+    │
+    ├─ templates/               # Frontend templates
+    │  └─ index.html
+    │
+    ├─ static/                  # Static assets
+    │  └─ style.css
+    │
+    ├─ tests/                   # Unit tests
+    │  ├─ test_chunking.py
+    │  ├─ test_pipeline_mock.py
+    │  └─ conftest.py
+    │
+    └─ .github/
+       └─ workflows/
+      └─ ci.yml             # GitHub Actions CI workflow
+
